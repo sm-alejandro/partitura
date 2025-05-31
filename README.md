@@ -27,7 +27,6 @@
 
 
 https://github.com/user-attachments/assets/c0615128-ed88-4fd5-9f24-f399f0aabab2
-https://raw.githubusercontent.com/sm-alejandro/partitura/main/frontend/public/demo.mp4
 
 ## Key Features
 
