@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="http://partitura.elpianomaster.com"><img src="https://raw.githubusercontent.com/sm-alejandro/partitura/main/frontend/public/logo.svg" alt="Partitura" width="200"></a>
+  <a href="http://partitura.elpianomaster.com"><img src="https://raw.githubusercontent.com/sm-alejandro/partitura/main/frontend/public/logo_dark.svg" alt="Partitura" width="200"></a>
   <br>
   Partitura
   <br>
