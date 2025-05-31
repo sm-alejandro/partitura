@@ -6,7 +6,7 @@
   <br>
 </h1>
 
-<h4 align="center">A Sheet Music Manager for multiple formats and instruments.</h4>
+<h4 align="center">A Sheet Music Manager for multiple file formats and instruments</h4>
 <p align="center">
   <a href="https://img.shields.io/badge/made%20with-python-green">
     <img src="https://img.shields.io/badge/made%20with-python-green"
