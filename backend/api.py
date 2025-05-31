@@ -23,7 +23,7 @@ from fastapi.responses import FileResponse
 from backend.models import Author, Category, Playlist, PlaylistSong, Song
 from config import PROJECT_DIR
 
-app = FastAPI(title="Songs API")
+app = FastAPI(title="Partitura API")
 
 # Allow CORS (optional, useful for frontend clients)
 app.add_middleware(

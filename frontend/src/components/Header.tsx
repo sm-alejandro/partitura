@@ -14,11 +14,15 @@ function Header() {
 		<header className="bg-gray-900 text-white p-4 shadow-lg">
 			<div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
 				<h1 className="text-3xl font-bold mb-2 md:mb-0">
-					<Link
-						to="/"
-						className="hover:text-blue-400 transition duration-200"
-					>
-						My Songs
+					<Link to="/">
+						<div className="flex">
+							<img
+								src="/logo_dark.svg"
+								alt="partitura logo"
+								className="size-16 hover:scale-105  transition duration-200"
+							/>
+							<span className="text-white">Partitura</span>
+						</div>
 					</Link>
 				</h1>
 				<nav className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">

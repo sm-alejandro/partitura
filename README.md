@@ -6,7 +6,7 @@
   <br>
 </h1>
 
-<h4 align="center">A music sheet manager for different formats and instruments.</h4>
+<h4 align="center">A Sheet Music Manager for multiple formats and instruments.</h4>
 <p align="center">
   <a href="https://img.shields.io/badge/made%20with-python-green">
     <img src="https://img.shields.io/badge/made%20with-python-green"
@@ -25,7 +25,7 @@
   <a href="#license">License</a>
 </p>
 
-![screenshot](https://raw.githubusercontent.com/sm-alejandro/partitura/main/frontend/public/partitura.gif)
+![screenshot](https://raw.githubusercontent.com/sm-alejandro/partitura/main/frontend/public/demo.mp4)
 
 ## Key Features
 

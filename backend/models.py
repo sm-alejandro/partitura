@@ -19,7 +19,7 @@ from peewee import CharField, ForeignKeyField, Model, SqliteDatabase
 from config import PROJECT_DIR
 
 # Define the SQLite database
-db = SqliteDatabase(PROJECT_DIR / "database" / "songs.db")
+db = SqliteDatabase(PROJECT_DIR / "backend" / "songs.db")
 
 
 class BaseModel(Model):
