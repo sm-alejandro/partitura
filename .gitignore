@@ -1,0 +1,6 @@
+__pycache__
+.mscbackup
+.venv
+backend/sheets
+config.py
+*.db
