@@ -25,7 +25,9 @@
   <a href="#license">License</a>
 </p>
 
-<video src='<video controls src="https://raw.githubusercontent.com/sm-alejandro/partitura/main/frontend/public/demo.mp4" title="your URL here"></video>' width=280></video>
+
+https://github.com/user-attachments/assets/c0615128-ed88-4fd5-9f24-f399f0aabab2
+https://raw.githubusercontent.com/sm-alejandro/partitura/main/frontend/public/demo.mp4
 
 ## Key Features
 
