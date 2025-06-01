@@ -2,5 +2,6 @@ __pycache__
 .mscbackup
 .venv
 backend/sheets
+backend/songs
 config.py
 *.db

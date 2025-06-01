@@ -167,7 +167,7 @@ def get_song_files(song_id):
     folder_path = song.folder  # Assuming this is the path to the folder
     try:
         # List all files in the folder
-        files = PROJECT_DIR / "frontend" / "public" / "songs" / folder_path
+        files = PROJECT_DIR / "backend" / "songs" / folder_path
         print(files)
         # Filter for PDF and MusicXML files
         song_files = {
