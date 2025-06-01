@@ -165,9 +165,10 @@ def get_song_files(song_id):
         raise HTTPException(status_code=404, detail="Song not found")
 
     folder_path = song.folder  # Assuming this is the path to the folder
+    category = Category.get_by_id(song.category)
     try:
         # List all files in the folder
-        files = PROJECT_DIR / "backend" / "songs" / folder_path
+        files = PROJECT_DIR / "backend" / "songs" / category.name / folder_path
         print(files)
         # Filter for PDF and MusicXML files
         song_files = {

@@ -26,7 +26,7 @@ from converter.xml2pro import xml2pro2pdf
 
 def add_song(filepath: Path):
     "Manage adding a sheet to the database and copying to the website public dir"
-    folder = PROJECT_DIR / "backend" / "songs" / filepath.stem
+    folder = PROJECT_DIR / "backend" / "songs" / filepath.parent.name / filepath.stem
     folder.mkdir(exist_ok=True, parents=True)
     new_file = folder / filepath.name
     shutil.copy(filepath, new_file)
