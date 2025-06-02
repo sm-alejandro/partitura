@@ -55,6 +55,9 @@ $ mv example_config.py config.py
 # Install chordpro: https://www.chordpro.org/chordpro/chordpro-installation/#installing-chordpro
 $ sudo apt-get install chordpro
 
+# Init the database
+$ py -m backend.models
+
 # Load songs into database and frontend
 $ py -m backend.import ./your-sheets
 
