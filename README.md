@@ -25,7 +25,6 @@
   <a href="#license">License</a>
 </p>
 
-
 https://github.com/user-attachments/assets/c0615128-ed88-4fd5-9f24-f399f0aabab2
 
 ## Key Features
@@ -47,6 +46,14 @@ $ git clone https://github.com/sm-alejandro/partitura
 
 # Go into the directory
 $ cd partitura
+
+# Install and configure musescore
+# set your musescore executable here
+# download musescore.appimage from https://musescore.org/en/download
+$ mv example_config.py config.py
+
+# Install chordpro: https://www.chordpro.org/chordpro/chordpro-installation/#installing-chordpro
+$ sudo apt-get install chordpro
 
 # Load songs into database and frontend
 $ py -m backend.import ./your-sheets
