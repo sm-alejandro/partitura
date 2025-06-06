@@ -19,6 +19,7 @@ from typing import Optional
 from fastapi import FastAPI, Form, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
+from pydantic import BaseModel
 
 from backend.models import Author, Category, Playlist, PlaylistSong, Song
 from config import PROJECT_DIR
@@ -136,11 +137,15 @@ def create_playlist(name: str = Form(...)):
     return p.__data__
 
 
+class SongId(BaseModel):
+    song_id: int
+
+
 @app.post("/playlists/{playlist_id}")
-def add_song_to_playlist(playlist_id: int, song_id: int = Form(...)):
+def add_song_to_playlist(playlist_id: int, songId: SongId):
     try:
         playlist = Playlist.get_by_id(playlist_id)
-        song = Song.get_by_id(song_id)
+        song = Song.get_by_id(songId.song_id)
         PlaylistSong.create(playlist=playlist, song=song)
         return {"message": "Song added to playlist"}
     except Exception as e:
