@@ -21,11 +21,13 @@ function Header() {
 								alt="partitura logo"
 								className="size-16 hover:scale-105  transition duration-200"
 							/>
-							<span className="text-white">Partitura</span>
+							<span className="text-white my-auto">
+								Partitura
+							</span>
 						</div>
 					</Link>
 				</h1>
-				<nav className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
+				<nav className="text-white flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
 					<Link
 						to="/authors"
 						className="hover:text-blue-400 transition duration-200"

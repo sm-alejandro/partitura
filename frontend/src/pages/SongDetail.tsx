@@ -119,14 +119,18 @@ function SongDetail() {
 
 				{/* Links */}
 				<h3 className="text-2xl">Files</h3>
+
 				{files?.pdf.map((file) => (
 					<button
 						key={file}
 						onClick={() => handlePDFClick(file)}
-						className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+						className="group relative h-12 overflow-hidden overflow-x-hidden rounded-md bg-neutral-950 px-8 py-2 text-neutral-50"
 					>
-						<span className="text-white">
+						<span className="relative z-10">
 							{file.substring(file.lastIndexOf("/") + 1)}
+						</span>
+						<span className="absolute inset-0 overflow-hidden rounded-md">
+							<span className="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-blue-500 transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"></span>
 						</span>
 					</button>
 				))}
@@ -134,10 +138,13 @@ function SongDetail() {
 					<button
 						key={file}
 						onClick={() => handleMusicXMLClick(file)}
-						className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+						className="group relative h-12 overflow-hidden overflow-x-hidden rounded-md bg-neutral-950 px-8 py-2 text-neutral-50"
 					>
-						<span className="text-white">
+						<span className="relative z-10">
 							{file.substring(file.lastIndexOf("/") + 1)}
+						</span>
+						<span className="absolute inset-0 overflow-hidden rounded-md">
+							<span className="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-blue-500 transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"></span>
 						</span>
 					</button>
 				))}
