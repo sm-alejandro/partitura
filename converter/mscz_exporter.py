@@ -13,4 +13,8 @@ def mscz2xml(filepath: Path):
 
 def mscz2pdf(filepath: Path):
     "Converts musescore sheet to pdf"
-    subprocess.run([MUSESCORE_EXE, "--score-parts-pdf", filepath], check=True)
+    pdf_file = filepath.with_suffix(".pdf")
+    subprocess.run(
+        [MUSESCORE_EXE, "--score-parts-pdf", filepath, "--export-to", pdf_file],
+        check=True,
+    )

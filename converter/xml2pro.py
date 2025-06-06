@@ -46,7 +46,8 @@ class XML2Pro:
         return self.root.find("work/work-title").text
 
     def get_composer(self):
-        return self.root.find("identification/creator[@type='composer']").text
+        c = self.root.find("identification/creator[@type='composer']")
+        return c.text if c else "unknown"
 
     def process_metadata(self):
         "Get the song name and descriptions"
@@ -75,20 +76,29 @@ class XML2Pro:
                 if direction == "forward":
                     self.in_repeat = index
                 if direction == "backward":
-                    found = False
-                    for i in range(self.in_repeat, index + 1):
-                        m_search = measures[i]
-                        if (
-                            len(m_search.findall(f'note/lyric[@number="{verse+1}"]'))
-                            != 0
-                        ):
-                            found = True
-                            break
-                    if found:
+                    any_found = False
+                    for verse_index in range(verse + 1, 10):
+                        found = False
                         for i in range(self.in_repeat, index + 1):
-                            self.process_measure(measures[i], verse + 1)
-                    else:
-                        self.result += "(bis)\n"
+                            m_search = measures[i]
+                            if (
+                                len(
+                                    m_search.findall(
+                                        f'note/lyric[@number="{verse_index}"]'
+                                    )
+                                )
+                                != 0
+                            ):
+                                found = True
+                                break
+                        if found:
+                            any_found = True
+                            for i in range(self.in_repeat, index + 1):
+                                self.process_measure(measures[i], verse_index)
+                        else:
+                            if not any_found:
+                                self.result += "(bis)\n"
+                            break
 
     def process_measure(self, measure, verse):
         "Process a single measure"
@@ -122,11 +132,10 @@ class XML2Pro:
                 except Exception:
                     alter = ""
                 q_code = maps.kinds[child.find("kind").text]
-                extra = "-" if stype in ["begin", "middle"] else ""
                 if q_code == "none":
                     chord_root = "."
                     q_code = ""
-                text += extra + "[" + chord_root + alter + q_code + "]"
+                text += "[" + chord_root + alter + q_code + "]"
             elif child.tag == "note":
                 lyrics = child.findall(f'lyric[@number="{verse}"]')
                 for lyr in lyrics:
@@ -149,9 +158,9 @@ class XML2Pro:
         if config["eoc"]:
             output += "\n{end_of_chorus}\n"
         if config["soc"]:
-            output = "{start_of_chorus}\n" + output
+            output = "\n{start_of_chorus}\n" + output
         if config["chorus"]:
-            output += "\n\n{comment:chorus}\n"
+            output += "\n\n{comment:chorus}\n\n\n"
         if config["ending"] > 0:
             output = f" {config['ending']}.{output}"
         if p := config["part_indicator"]:
@@ -170,7 +179,7 @@ def xml2pro2pdf(input_file: Path):
             "chordpro",
             input_file.with_suffix(".pro"),
             "-o",
-            input_file.with_suffix(".pdf"),
+            input_file.parent / (input_file.stem + "_letra.pdf"),
         ],
         check=False,
     )

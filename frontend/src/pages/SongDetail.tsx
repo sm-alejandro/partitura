@@ -91,7 +91,8 @@ function SongDetail() {
 	};
 
 	const handlePDFClick = (file: string) => {
-		navigate(`/pdfviewer?file=${file}`);
+		const fileUrl = `/api/file?file=${encodeURIComponent(file)}`;
+		window.open(fileUrl, "_blank");
 	};
 
 	if (loading) return <p className="text-white p-6">Loading...</p>;
