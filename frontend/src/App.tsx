@@ -9,7 +9,6 @@ import PlaylistDetail from "./pages/PlaylistDetail";
 import Authors from "./pages/Authors";
 import AuthorDetail from "./pages/AuthorDetail";
 import MusicXMLViewerPage from "./pages/MusicXML";
-import PDFViewer from "./pages/PDFViewer";
 
 function App() {
 	return (
@@ -26,7 +25,6 @@ function App() {
 				<Route path="/authors" element={<Authors />} />
 				<Route path="/authors/:id" element={<AuthorDetail />} />
 				<Route path="/musicxml" element={<MusicXMLViewerPage />} />
-				<Route path="/pdfviewer" element={<PDFViewer />} />
 			</Routes>
 		</>
 	);
