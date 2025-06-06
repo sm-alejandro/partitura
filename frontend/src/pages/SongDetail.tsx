@@ -124,7 +124,7 @@ function SongDetail() {
 					<button
 						key={file}
 						onClick={() => handlePDFClick(file)}
-						className="group relative h-12 overflow-hidden overflow-x-hidden rounded-md bg-neutral-950 px-8 py-2 text-neutral-50"
+						className="group mx-10 relative h-12 overflow-hidden overflow-x-hidden rounded-md bg-neutral-950 px-8 py-2 text-neutral-50"
 					>
 						<span className="relative z-10">
 							{file.substring(file.lastIndexOf("/") + 1)}
@@ -138,7 +138,7 @@ function SongDetail() {
 					<button
 						key={file}
 						onClick={() => handleMusicXMLClick(file)}
-						className="group relative h-12 overflow-hidden overflow-x-hidden rounded-md bg-neutral-950 px-8 py-2 text-neutral-50"
+						className="group mx-10 relative h-12 overflow-hidden overflow-x-hidden rounded-md bg-neutral-950 px-8 py-2 text-neutral-50"
 					>
 						<span className="relative z-10">
 							{file.substring(file.lastIndexOf("/") + 1)}
