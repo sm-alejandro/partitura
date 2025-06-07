@@ -19,10 +19,7 @@ function SongDetail() {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
 	const [submitMessage, setSubmitMessage] = useState<string | null>(null);
-	const [files, setFiles] = useState<{
-		pdf: string[];
-		musicxml: string[];
-	} | null>(null);
+	const [files, setFiles] = useState<string[] | null>(null);
 
 	useEffect(() => {
 		async function fetchData() {
@@ -120,24 +117,10 @@ function SongDetail() {
 				{/* Links */}
 				<h3 className="text-2xl">Files</h3>
 
-				{files?.pdf.map((file) => (
+				{files?.map((file) => (
 					<button
 						key={file}
 						onClick={() => handlePDFClick(file)}
-						className="group mx-10 relative h-12 overflow-hidden overflow-x-hidden rounded-md bg-neutral-950 px-8 py-2 text-neutral-50"
-					>
-						<span className="relative z-10">
-							{file.substring(file.lastIndexOf("/") + 1)}
-						</span>
-						<span className="absolute inset-0 overflow-hidden rounded-md">
-							<span className="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-blue-500 transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"></span>
-						</span>
-					</button>
-				))}
-				{files?.musicxml.map((file) => (
-					<button
-						key={file}
-						onClick={() => handleMusicXMLClick(file)}
 						className="group mx-10 relative h-12 overflow-hidden overflow-x-hidden rounded-md bg-neutral-950 px-8 py-2 text-neutral-50"
 					>
 						<span className="relative z-10">

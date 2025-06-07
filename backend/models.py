@@ -72,6 +72,9 @@ def delete_db():
 
 def fill_db():
     Author.create(
+        name="unknown", image="https://www.svgrepo.com/show/452030/avatar-default.svg"
+    )
+    Author.create(
         name="Franz Schubert",
         image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftheclassicreview.com%2Fwp-content%2Fuploads%2F2018%2F12%2FSchubert-1200-850.jpg&f=1&nofb=1&ipt=6ec9473de1413ad07dd71da5b117e8ebf35dba2d9103fda478655a6931bd6bb0",
     )

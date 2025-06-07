@@ -176,11 +176,7 @@ def get_song_files(song_id):
         files = PROJECT_DIR / "backend" / "songs" / category.name / folder_path
         print(files)
         # Filter for PDF and MusicXML files
-        song_files = {
-            "pdf": list(files.glob("*.pdf")),
-            "musicxml": list(files.glob("*.musicxml")),
-        }
-        return song_files
+        return list(files.glob("*.pdf"))
     except Exception as exc:
         raise HTTPException(
             status_code=500, detail="Error while fetching files"
