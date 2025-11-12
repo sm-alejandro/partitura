@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import type { Playlist } from "../models/Playlist";
-import ItemList from "./ItemList";
-import PlaylistCard from "../components/Playlist";
+import type { Playlist } from "../../models/Playlist";
+import ItemList from "../shared/ItemList";
+import PlaylistCard from "./Playlist";
 
 export default function Playlists() {
 	const [playlists, setPlaylists] = useState<Playlist[]>([]);

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import type { Playlist } from "../models/Playlist";
+import type { Playlist } from "../../models/Playlist";
 
 function generateColor(name: string): string {
 	let hash = 0;

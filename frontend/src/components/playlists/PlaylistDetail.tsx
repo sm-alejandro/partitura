@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import type { Song } from "../models/Song";
-import ItemList from "./ItemList";
-import SongCard from "../components/SongCard";
-import type { Playlist } from "../models/Playlist";
+import type { Playlist } from "../../models/Playlist";
+import type { Song } from "../../models/Song";
+import ItemList from "../shared/ItemList";
+import SongCard from "../songs/SongCard";
 
 function Songs() {
 	const { id } = useParams<{ id: string }>();

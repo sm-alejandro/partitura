@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import type { Category } from "../models/Category";
+import type { Category } from "../../models/Category";
 
 function generateColor(name: string): string {
+	if (!name) return "#000";
 	let hash = 0;
 	for (let i = 0; i < name.length; i++) {
 		hash = name.charCodeAt(i) + ((hash << 5) - hash);

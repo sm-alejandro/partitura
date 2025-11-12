@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import type { Song } from "../models/Song";
-import ItemList from "./ItemList";
-import SongCard from "../components/SongCard";
-import type { Author } from "../models/Author";
+import type { Song } from "../../models/Song";
+import SongCard from "../songs/SongCard";
+import type { Author } from "../../models/Author";
+import ItemList from "../shared/ItemList";
 
 function AuthorDetail() {
 	const { id } = useParams<{ id: string }>();

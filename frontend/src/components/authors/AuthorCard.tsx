@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import type { Author } from "../models/Author";
+import type { Author } from "../../models/Author";
 
 export default function AuthorCard({ item }: { item: Author }) {
 	return (

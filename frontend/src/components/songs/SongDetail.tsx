@@ -1,11 +1,11 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import type { Song } from "../models/Song";
-import type { Playlist } from "../models/Playlist";
-import type { Author } from "../models/Author";
-import type { Category } from "../models/Category";
-import AuthorCard from "../components/AuthorCard";
-import CategoryCard from "../components/CategoryCard";
+import type { Author } from "../../models/Author";
+import type { Category } from "../../models/Category";
+import type { Playlist } from "../../models/Playlist";
+import type { Song } from "../../models/Song";
+import AuthorCard from "../authors/AuthorCard";
+import CategoryCard from "../categories/CategoryCard";
 
 function SongDetail() {
 	const { id } = useParams<{ id: string }>();
