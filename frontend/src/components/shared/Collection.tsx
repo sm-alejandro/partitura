@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Container } from "@mantine/core";
 import ItemList from "./ItemList";
 
 function useQuery() {
@@ -9,10 +8,11 @@ function useQuery() {
 
 interface CollectionProps {
 	collection: string;
+	cols: number;
 	CardComponent: React.ComponentType<{ item: any }>;
 }
 
-function Collection({ collection, CardComponent }: CollectionProps) {
+function Collection({ collection, CardComponent, cols }: CollectionProps) {
 	const [items, setItems] = useState<any[]>([]);
 	const query = useQuery().get("query") || "";
 
@@ -28,7 +28,14 @@ function Collection({ collection, CardComponent }: CollectionProps) {
 			.catch((err) => console.error("Failed to fetch data:", err));
 	}, [query, collection]);
 
-	return <ItemList items={items} header="" CardComponent={CardComponent} />;
+	return (
+		<ItemList
+			items={items}
+			cols={cols}
+			header=""
+			CardComponent={CardComponent}
+		/>
+	);
 }
 
 export default Collection;

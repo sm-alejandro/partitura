@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import type { Category } from "../../models/Category";
+import { Card, Group, Title } from "@mantine/core";
 
 function generateColor(name: string): string {
 	if (!name) return "#000";
@@ -29,14 +30,14 @@ function generateColor(name: string): string {
 
 export default function CategoryCard({ item }: { item: Category }) {
 	return (
-		<Link
+		<Card
+			component={Link}
 			to={`/categories/${item.id}`}
-			className="flex w-full items-center space-x-2 p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105"
 			style={{ backgroundColor: generateColor(item.name) }}
 		>
-			<span className="text-lg text-white font-semibold">
-				{item.name}
-			</span>
-		</Link>
+			<Group>
+				<Title order={3}>{item.name}</Title>
+			</Group>
+		</Card>
 	);
 }

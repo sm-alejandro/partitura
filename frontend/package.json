@@ -12,7 +12,10 @@
   "dependencies": {
     "@mantine/core": "^8.3.7",
     "@mantine/hooks": "^8.3.7",
+    "@mantine/notifications": "^8.3.7",
     "@react-pdf/renderer": "^4.3.0",
+    "@tabler/icons": "^3.35.0",
+    "@tabler/icons-react": "^3.35.0",
     "@tailwindcss/vite": "^4.1.8",
     "opensheetmusicdisplay": "^1.9.0",
     "react": "^19.1.0",

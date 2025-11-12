@@ -50,6 +50,7 @@ export default function Playlists() {
 	return (
 		<>
 			<ItemList
+				cols={3}
 				items={playlists}
 				CardComponent={PlaylistCard}
 				header={`All Playlists (${playlists.length})`}

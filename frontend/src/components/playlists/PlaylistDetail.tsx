@@ -48,6 +48,7 @@ function Songs() {
 	return (
 		<>
 			<ItemList
+				cols={5}
 				items={songs}
 				CardComponent={SongCard}
 				header={`All Songs in playlist ${playlist?.name}`}

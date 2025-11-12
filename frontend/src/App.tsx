@@ -4,6 +4,7 @@ import Playlists from "./components/playlists/Playlists";
 import AuthorDetail from "./components/authors/AuthorDetail";
 import MusicXMLViewerPage from "./components/shared/MusicXML";
 import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
 import { AppShell, Container, MantineProvider } from "@mantine/core";
 import SongCard from "./components/songs/SongCard";
 import Collection from "./components/shared/Collection";
@@ -12,10 +13,12 @@ import AuthorCard from "./components/authors/AuthorCard";
 import CategoryDetail from "./components/categories/CategoryDetail";
 import PlaylistDetail from "./components/playlists/PlaylistDetail";
 import SongDetail from "./components/songs/SongDetail";
+import { Notifications } from "@mantine/notifications";
 
 function App() {
 	return (
 		<MantineProvider defaultColorScheme="dark">
+			<Notifications />
 			<AppShell padding="md" header={{ height: 84, offset: true }}>
 				<AppShell.Header>
 					<Header />
@@ -32,6 +35,7 @@ function App() {
 								path="/songs"
 								element={
 									<Collection
+										cols={5}
 										collection="songs"
 										CardComponent={SongCard}
 									/>
@@ -42,6 +46,7 @@ function App() {
 								path="/categories"
 								element={
 									<Collection
+										cols={4}
 										collection="categories"
 										CardComponent={CategoryCard}
 									/>
@@ -60,6 +65,7 @@ function App() {
 								path="/authors"
 								element={
 									<Collection
+										cols={3}
 										collection="authors"
 										CardComponent={AuthorCard}
 									/>

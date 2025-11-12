@@ -1,11 +1,15 @@
+import { Notification } from "@mantine/core";
 import { useEffect, useState, type FormEvent } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import type { Author } from "../../models/Author";
 import type { Category } from "../../models/Category";
+import { IconX, IconCheck } from "@tabler/icons-react";
 import type { Playlist } from "../../models/Playlist";
 import type { Song } from "../../models/Song";
 import AuthorCard from "../authors/AuthorCard";
 import CategoryCard from "../categories/CategoryCard";
+import { Button, Group, Select, Stack, Title } from "@mantine/core";
+import { notifications } from "@mantine/notifications";
 
 function SongDetail() {
 	const { id } = useParams<{ id: string }>();
@@ -75,12 +79,19 @@ function SongDetail() {
 			});
 			if (!res.ok) throw new Error("Failed to add song to playlist");
 
-			setSubmitMessage("Song added to playlist!");
+			notifications.show({
+				title: "Done",
+				message: "The song has been added to the playlist",
+			});
 		} catch (err) {
-			setSubmitMessage(`Error: ${(err as Error).message}`);
+			notifications.show({
+				title: "Oops!",
+				color: "red",
+				message:
+					"There has been an error adding the song to the playlist",
+			});
 		}
 	}
-
 	const navigate = useNavigate();
 
 	const handleMusicXMLClick = (file: string) => {
@@ -97,85 +108,40 @@ function SongDetail() {
 	if (!song) return <p className="text-white p-6">Song not found</p>;
 
 	return (
-		<div className="min-h-screen text-white">
-			<main className="container mx-auto p-6">
-				{/* Header block */}
-				<h1 className="text-4xl font-bold mb-4">{song.title}</h1>
-
-				<div className="flex space-x-4 mb-4">
-					{/* Author */}
-					{author ? <AuthorCard item={author} /> : "no author"}
-					{/* Category */}
-					{category ? (
-						<CategoryCard item={category} />
-					) : (
-						"no category"
-					)}
-				</div>
-				<br />
-
-				{/* Links */}
+		<Stack justify="flex-start" gap="xl">
+			<Title order={1}>{song.title}</Title>
+			<Group>
+				{author ? <AuthorCard item={author} /> : "no author"}
+				{category ? <CategoryCard item={category} /> : "no category"}
+			</Group>
+			<Stack>
 				<h3 className="text-2xl">Files</h3>
 
 				{files?.map((file) => (
-					<button
+					<Button
+						variant="filled"
 						key={file}
 						onClick={() => handlePDFClick(file)}
-						className="group mx-10 relative h-12 overflow-hidden overflow-x-hidden rounded-md bg-neutral-950 px-8 py-2 text-neutral-50"
 					>
-						<span className="relative z-10">
-							{file.substring(file.lastIndexOf("/") + 1)}
-						</span>
-						<span className="absolute inset-0 overflow-hidden rounded-md">
-							<span className="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-blue-500 transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"></span>
-						</span>
-					</button>
+						{file.substring(file.lastIndexOf("/") + 1)}
+					</Button>
 				))}
-
-				{/* Add to Playlist Form */}
-				<form onSubmit={handleAddToPlaylist} className="mb-4 max-w-sm">
-					<label
-						htmlFor="playlist"
-						className="block text-sm font-medium text-gray-300 mb-2"
-					>
-						Add to Playlist:
-					</label>
-					<select
-						id="playlist"
-						name="playlist_id"
-						className="block w-full p-2 border border-gray-600 rounded-md bg-gray-700 text-white mb-2"
-						value={selectedPlaylistId ?? ""}
-						onChange={(e) =>
-							setSelectedPlaylistId(Number(e.target.value))
-						}
-					>
-						{playlists.map((pl) => (
-							<option key={pl.id} value={pl.id}>
-								{pl.name}
-							</option>
-						))}
-					</select>
-					<button
-						type="submit"
-						className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-					>
-						Add Song
-					</button>
-				</form>
-
-				{submitMessage && (
-					<p
-						className={`${
-							submitMessage.startsWith("Error")
-								? "text-red-500"
-								: "text-green-500"
-						}`}
-					>
-						{submitMessage}
-					</p>
-				)}
-			</main>
-		</div>
+			</Stack>
+			<Group align="end">
+				<Select
+					label="Add to Playlist:"
+					placeholder="Choose playlist"
+					data={playlists.map((p: Playlist) => {
+						return { label: p.name, value: p.id.toString() };
+					})}
+					maxDropdownHeight={200}
+					onChange={(_value, option) => {
+						setSelectedPlaylistId(Number(option.value));
+					}}
+				/>
+				<Button onClick={handleAddToPlaylist}>Submit</Button>
+			</Group>
+		</Stack>
 	);
 }
 
