@@ -4,8 +4,9 @@ import type { Playlist } from "../../models/Playlist";
 import type { Song } from "../../models/Song";
 import ItemList from "../shared/ItemList";
 import SongCard from "../songs/SongCard";
+import AnimatedLayout from "../shared/AnimatedLayout";
 
-function Songs() {
+function PlaylistDetail() {
 	const { id } = useParams<{ id: string }>();
 	const [songs, setSongs] = useState<Song[]>([]);
 	const [playlist, setPlaylist] = useState<Playlist | null>(null);
@@ -46,7 +47,7 @@ function Songs() {
 	};
 
 	return (
-		<>
+		<AnimatedLayout>
 			<ItemList
 				cols={5}
 				items={songs}
@@ -61,8 +62,8 @@ function Songs() {
 					Delete Playlist
 				</button>
 			</div>
-		</>
+		</AnimatedLayout>
 	);
 }
 
-export default Songs;
+export default PlaylistDetail;

@@ -4,8 +4,10 @@ import type { Category } from "../../models/Category";
 import type { Song } from "../../models/Song";
 import ItemList from "../shared/ItemList";
 import SongCard from "../songs/SongCard";
+import { Stack, Title } from "@mantine/core";
+import AnimatedLayout from "../shared/AnimatedLayout";
 
-function Songs() {
+function CategoryDetail() {
 	const { id } = useParams<{ id: string }>();
 	const [songs, setSongs] = useState<Song[]>([]);
 	const [category, setCategory] = useState<Category | null>(null);
@@ -29,13 +31,18 @@ function Songs() {
 	}, []);
 
 	return (
-		<ItemList
-			cols={5}
-			items={songs}
-			CardComponent={SongCard}
-			header={`All Songs in category ${category?.name}`}
-		/>
+		<AnimatedLayout>
+			<Stack>
+				<Title order={1}>Category: {category?.name}</Title>
+				<ItemList
+					cols={5}
+					items={songs}
+					CardComponent={SongCard}
+					header={`All Songs in category ${category?.name}`}
+				/>
+			</Stack>
+		</AnimatedLayout>
 	);
 }
 
-export default Songs;
+export default CategoryDetail;

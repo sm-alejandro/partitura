@@ -4,6 +4,8 @@ import type { Song } from "../../models/Song";
 import SongCard from "../songs/SongCard";
 import type { Author } from "../../models/Author";
 import ItemList from "../shared/ItemList";
+import { Stack, Title } from "@mantine/core";
+import AnimatedLayout from "../shared/AnimatedLayout";
 
 function AuthorDetail() {
 	const { id } = useParams<{ id: string }>();
@@ -29,12 +31,17 @@ function AuthorDetail() {
 	}, []);
 
 	return (
-		<ItemList
-			cols={5}
-			items={songs}
-			CardComponent={SongCard}
-			header={`All Songs from author ${author?.name}`}
-		/>
+		<AnimatedLayout>
+			<Stack justify="flex-start" gap="xl">
+				<Title order={1}>Author: {author?.name || ""}</Title>
+				<ItemList
+					cols={5}
+					items={songs}
+					CardComponent={SongCard}
+					header={`All Songs from author ${author?.name}`}
+				/>
+			</Stack>
+		</AnimatedLayout>
 	);
 }
 

@@ -10,6 +10,7 @@ import AuthorCard from "../authors/AuthorCard";
 import CategoryCard from "../categories/CategoryCard";
 import { Button, Group, Select, Stack, Title } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
+import AnimatedLayout from "../shared/AnimatedLayout";
 
 function SongDetail() {
 	const { id } = useParams<{ id: string }>();
@@ -108,40 +109,46 @@ function SongDetail() {
 	if (!song) return <p className="text-white p-6">Song not found</p>;
 
 	return (
-		<Stack justify="flex-start" gap="xl">
-			<Title order={1}>{song.title}</Title>
-			<Group>
-				{author ? <AuthorCard item={author} /> : "no author"}
-				{category ? <CategoryCard item={category} /> : "no category"}
-			</Group>
-			<Stack>
-				<h3 className="text-2xl">Files</h3>
+		<AnimatedLayout>
+			<Stack justify="flex-start" gap="xl">
+				<Title order={1}>(Song) {song.title}</Title>
+				<Group>
+					{author ? <AuthorCard item={author} /> : "no author"}
+					{category ? (
+						<CategoryCard item={category} />
+					) : (
+						"no category"
+					)}
+				</Group>
+				<Stack>
+					<h3 className="text-2xl">Files</h3>
 
-				{files?.map((file) => (
-					<Button
-						variant="filled"
-						key={file}
-						onClick={() => handlePDFClick(file)}
-					>
-						{file.substring(file.lastIndexOf("/") + 1)}
-					</Button>
-				))}
+					{files?.map((file) => (
+						<Button
+							variant="filled"
+							key={file}
+							onClick={() => handlePDFClick(file)}
+						>
+							{file.substring(file.lastIndexOf("/") + 1)}
+						</Button>
+					))}
+				</Stack>
+				<Group align="end">
+					<Select
+						label="Add to Playlist:"
+						placeholder="Choose playlist"
+						data={playlists.map((p: Playlist) => {
+							return { label: p.name, value: p.id.toString() };
+						})}
+						maxDropdownHeight={200}
+						onChange={(_value, option) => {
+							setSelectedPlaylistId(Number(option.value));
+						}}
+					/>
+					<Button onClick={handleAddToPlaylist}>Submit</Button>
+				</Group>
 			</Stack>
-			<Group align="end">
-				<Select
-					label="Add to Playlist:"
-					placeholder="Choose playlist"
-					data={playlists.map((p: Playlist) => {
-						return { label: p.name, value: p.id.toString() };
-					})}
-					maxDropdownHeight={200}
-					onChange={(_value, option) => {
-						setSelectedPlaylistId(Number(option.value));
-					}}
-				/>
-				<Button onClick={handleAddToPlaylist}>Submit</Button>
-			</Group>
-		</Stack>
+		</AnimatedLayout>
 	);
 }
 

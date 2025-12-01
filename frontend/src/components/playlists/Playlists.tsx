@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import type { Playlist } from "../../models/Playlist";
 import ItemList from "../shared/ItemList";
 import PlaylistCard from "./Playlist";
+import { Stack, Title } from "@mantine/core";
+import AnimatedLayout from "../shared/AnimatedLayout";
 
 export default function Playlists() {
 	const [playlists, setPlaylists] = useState<Playlist[]>([]);
@@ -48,21 +50,24 @@ export default function Playlists() {
 	if (error) return <p className="text-red-500 p-6">{error}</p>;
 
 	return (
-		<>
-			<ItemList
-				cols={3}
-				items={playlists}
-				CardComponent={PlaylistCard}
-				header={`All Playlists (${playlists.length})`}
-			/>
-			<div className="flex justify-center mt-6">
-				<button
-					onClick={createPlaylist}
-					className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500 transition duration-200"
-				>
-					New Playlist
-				</button>
-			</div>
-		</>
+		<AnimatedLayout>
+			<Stack>
+				<Title order={1}>All playlists</Title>
+				<ItemList
+					cols={3}
+					items={playlists}
+					CardComponent={PlaylistCard}
+					header={`All Playlists (${playlists.length})`}
+				/>
+				<div className="flex justify-center mt-6">
+					<button
+						onClick={createPlaylist}
+						className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500 transition duration-200"
+					>
+						New Playlist
+					</button>
+				</div>
+			</Stack>
+		</AnimatedLayout>
 	);
 }

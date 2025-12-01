@@ -6,14 +6,19 @@ import MusicXMLViewerPage from "./components/shared/MusicXML";
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
 import { AppShell, Container, MantineProvider } from "@mantine/core";
-import SongCard from "./components/songs/SongCard";
-import Collection from "./components/shared/Collection";
-import CategoryCard from "./components/categories/CategoryCard";
-import AuthorCard from "./components/authors/AuthorCard";
 import CategoryDetail from "./components/categories/CategoryDetail";
 import PlaylistDetail from "./components/playlists/PlaylistDetail";
 import SongDetail from "./components/songs/SongDetail";
 import { Notifications } from "@mantine/notifications";
+import Categories from "./components/categories/Categories";
+import Authors from "./components/authors/Authors";
+import Songs from "./components/songs/Songs";
+
+const routes = [
+	{ path: "", element: <Navigate to="/songs" /> },
+	{ path: "/songs", element: <Songs /> },
+	{ path: "/songs/:id", element: <SongDetail /> },
+];
 
 function App() {
 	return (
@@ -27,30 +32,16 @@ function App() {
 				<AppShell.Main>
 					<Container size="xl">
 						<Routes>
-							<Route
-								path="/"
-								element={<Navigate to="/songs" replace />}
-							/>
-							<Route
-								path="/songs"
-								element={
-									<Collection
-										cols={5}
-										collection="songs"
-										CardComponent={SongCard}
-									/>
-								}
-							/>
-							<Route path="/songs/:id" element={<SongDetail />} />
+							{routes.map((r) => (
+								<Route
+									key={r.path}
+									path={r.path}
+									element={r.element}
+								/>
+							))}
 							<Route
 								path="/categories"
-								element={
-									<Collection
-										cols={4}
-										collection="categories"
-										CardComponent={CategoryCard}
-									/>
-								}
+								element={<Categories />}
 							/>
 							<Route
 								path="/categories/:id"
@@ -61,16 +52,7 @@ function App() {
 								path="/playlists/:id"
 								element={<PlaylistDetail />}
 							/>
-							<Route
-								path="/authors"
-								element={
-									<Collection
-										cols={3}
-										collection="authors"
-										CardComponent={AuthorCard}
-									/>
-								}
-							/>
+							<Route path="/authors" element={<Authors />} />
 							<Route
 								path="/authors/:id"
 								element={<AuthorDetail />}
