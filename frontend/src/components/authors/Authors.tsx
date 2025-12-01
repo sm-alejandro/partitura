@@ -28,7 +28,7 @@ function Authors() {
 	return (
 		<AnimatedLayout>
 			<Stack>
-				<Title order={1}>All authors</Title>
+				<Title order={1}>Authors</Title>
 				<ItemList
 					items={items}
 					cols={3}

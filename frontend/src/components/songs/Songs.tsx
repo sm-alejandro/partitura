@@ -28,7 +28,7 @@ function Songs() {
 	return (
 		<AnimatedLayout>
 			<Stack>
-				<Title order={1}>All songs</Title>
+				<Title order={1}>Songs</Title>
 				<ItemList
 					items={items}
 					cols={5}

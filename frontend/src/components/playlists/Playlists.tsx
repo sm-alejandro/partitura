@@ -52,12 +52,12 @@ export default function Playlists() {
 	return (
 		<AnimatedLayout>
 			<Stack>
-				<Title order={1}>All playlists</Title>
+				<Title order={1}>Playlists</Title>
 				<ItemList
 					cols={3}
 					items={playlists}
 					CardComponent={PlaylistCard}
-					header={`All Playlists (${playlists.length})`}
+					header={`Playlists (${playlists.length})`}
 				/>
 				<div className="flex justify-center mt-6">
 					<button

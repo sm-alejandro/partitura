@@ -38,7 +38,7 @@ function AuthorDetail() {
 					cols={5}
 					items={songs}
 					CardComponent={SongCard}
-					header={`All Songs from author ${author?.name}`}
+					header={`Songs from author ${author?.name}`}
 				/>
 			</Stack>
 		</AnimatedLayout>

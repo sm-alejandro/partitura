@@ -38,7 +38,7 @@ function CategoryDetail() {
 					cols={5}
 					items={songs}
 					CardComponent={SongCard}
-					header={`All Songs in category ${category?.name}`}
+					header={`Songs in category ${category?.name}`}
 				/>
 			</Stack>
 		</AnimatedLayout>

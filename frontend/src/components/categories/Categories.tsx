@@ -28,7 +28,7 @@ function Categories() {
 	return (
 		<AnimatedLayout>
 			<Stack>
-				<Title order={1}>All categories</Title>
+				<Title order={1}>Categories</Title>
 				<ItemList
 					items={items}
 					cols={4}

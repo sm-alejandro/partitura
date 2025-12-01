@@ -52,7 +52,7 @@ function PlaylistDetail() {
 				cols={5}
 				items={songs}
 				CardComponent={SongCard}
-				header={`All Songs in playlist ${playlist?.name}`}
+				header={`Songs in playlist ${playlist?.name}`}
 			/>
 			<div className="flex justify-center mt-6">
 				<button
