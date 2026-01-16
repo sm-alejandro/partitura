@@ -1,0 +1,21 @@
+<div class="mx-auto w-[80%]">
+  <app-breadcrumbs [items]="breadcrumbs" class="w-full align-left block"></app-breadcrumbs>
+  <h1 class="h1 text-4xl">Categories</h1>
+
+  <div class="py-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    @if(authors.hasValue()) { @for (author of sortedAuthors(); track $index ) {
+    <a
+      class="flex items-center gap-2 p-4 border rounded-lg shadow hover:bg-neutral-800 cursor-pointer"
+      [routerLink]="`${author.id}`"
+    >
+      <mat-icon class="folder-icon">person</mat-icon>
+      <h3 class="text-lg font-semibold">{{ author.name }}</h3>
+      <!-- <p class="text-gray-500">{{ author.id }} files</p> -->
+    </a>
+    } } @else if (authors.error()) {
+    <div>Could not load authors</div>
+    } @else if (authors.isLoading()) {
+    <div>Loading authors...</div>
+    }
+  </div>
+</div>

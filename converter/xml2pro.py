@@ -5,7 +5,7 @@ import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-from converter import maps
+import maps
 
 
 class XML2Pro:

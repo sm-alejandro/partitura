@@ -1,4 +1,5 @@
 import subprocess
+import sys
 from pathlib import Path
 
 from config import MUSESCORE_EXE
@@ -18,3 +19,8 @@ def mscz2pdf(filepath: Path):
         [MUSESCORE_EXE, filepath, "-o", pdf_file],
         check=True,
     )
+
+
+if __name__ == "__main__":
+    mscz2pdf(Path(sys.argv[1]))
+    mscz2xml(Path(sys.argv[1]))

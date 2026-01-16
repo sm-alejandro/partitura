@@ -1,0 +1,20 @@
+<div class="mx-auto w-[80%]">
+  <app-breadcrumbs [items]="breadcrumbs()" class="w-full align-left block"></app-breadcrumbs>
+  <h1 class="h1 text-4xl">{{ author.value()?.name }}</h1>
+  <div class="py-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    @if(songs.hasValue()) { @for (song of sortedSongs(); track $index) {
+    <a
+      class="flex items-center gap-2 p-4 border rounded-lg shadow hover:bg-neutral-800 cursor-pointer"
+      [routerLink]="`/songs/${song.id}`"
+    >
+      <mat-icon class="w-[20%]">music_note</mat-icon>
+      <h3 class="text-lg font-semibold w-[80%]">{{ song.slug }} - {{ song.title }}</h3>
+      <!-- <p class="text-gray-500">{{ category.id }} files</p> -->
+    </a>
+    } } @else if (songs.error()) {
+    <div>Could not load songs</div>
+    } @else if (songs.isLoading()) {
+    <div>Loading songs...</div>
+    }
+  </div>
+</div>

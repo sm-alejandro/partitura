@@ -1,0 +1,41 @@
+<div class="flex-col flex justify-between h-full w-full mx-auto">
+  <div>
+    <img src="logo_dark.svg" class="mx-auto w-full md:w-[50%]" />
+    <mat-form-field>
+      <mat-label>Search</mat-label>
+      <input
+        (input)="onType($event.target.value)"
+        [value]="search()"
+        matInput
+        placeholder="Ex. Ten Piedad"
+      />
+    </mat-form-field>
+  </div>
+  <div class="mx-auto grid text-2xl text-left text-center w-full">
+    <a
+      class="flex justify-center items-center cursor-pointer w-full py-2 rounded-lg"
+      routerLink="/songs"
+      routerLinkActive="highlight"
+      ><mat-icon>music_note</mat-icon><span class="md:block hidden">Songs</span></a
+    >
+    <a
+      class="flex justify-center items-center cursor-pointer w-full py-2 rounded-lg"
+      routerLink="/categories"
+      routerLinkActive="highlight"
+      ><mat-icon>category</mat-icon><span class="md:block hidden">Categories</span></a
+    >
+    <a
+      class="flex justify-center items-center cursor-pointer w-full py-2 rounded-lg"
+      routerLink="/authors"
+      routerLinkActive="highlight"
+      ><mat-icon>person</mat-icon><span class="md:block hidden">Authors</span></a
+    >
+    <a
+      class="flex justify-center items-center cursor-pointer w-full py-2 rounded-lg"
+      routerLink="/playlists"
+      routerLinkActive="highlight"
+      ><mat-icon>queue_music</mat-icon><span class="md:block hidden">Playlists</span></a
+    >
+  </div>
+  <br />
+</div>

@@ -19,14 +19,15 @@ import sys
 from pathlib import Path
 
 from backend.models import Author, Category, Song
-from config import PROJECT_DIR
 from converter.mscz_exporter import mscz2pdf, mscz2xml
 from converter.xml2pro import xml2pro2pdf
+
+from ..backend.config import PROJECT_DIR
 
 
 def add_song(filepath: Path):
     "Manage adding a sheet to the database and copying to the website public dir"
-    folder = PROJECT_DIR / "backend" / "songs" / filepath.parent.name / filepath.stem
+    folder = PROJECT_DIR / "songs" / filepath.parent.name / filepath.stem
     folder.mkdir(exist_ok=True, parents=True)
     new_file = folder / filepath.name
     shutil.copy(filepath, new_file)
@@ -65,4 +66,5 @@ if __name__ == "__main__":
         add_song(input_path)
     else:
         print(f"{input_path} is not a valid file or directory.")
+        sys.exit(1)
         sys.exit(1)

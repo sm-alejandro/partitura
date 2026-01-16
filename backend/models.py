@@ -14,12 +14,11 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>."""
 
+from config import PROJECT_DIR
 from peewee import CharField, ForeignKeyField, Model, SqliteDatabase
 
-from config import PROJECT_DIR
-
 # Define the SQLite database
-db = SqliteDatabase(PROJECT_DIR / "backend" / "songs.db")
+db = SqliteDatabase(PROJECT_DIR / "songs.db")
 
 
 class BaseModel(Model):
@@ -37,6 +36,7 @@ class Category(BaseModel):
 
 
 class Song(BaseModel):
+    slug = CharField(null=True)
     title = CharField()
     author = ForeignKeyField(Author, backref="songs")
     category = ForeignKeyField(Category, backref="songs")
@@ -83,4 +83,3 @@ def fill_db():
 if __name__ == "__main__":
     delete_db()
     initialize_db()
-    fill_db()

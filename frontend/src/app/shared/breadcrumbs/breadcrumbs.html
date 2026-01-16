@@ -1,0 +1,5 @@
+<div>
+  @for (breadcrumb of items; track $index) {
+  <a class="text-cyan-500 underline" [routerLink]="breadcrumb.link">{{ breadcrumb.text }}</a>
+  @if (!$last) {<span> > </span>} }
+</div>

@@ -65,7 +65,8 @@ $ py -m backend.import ./your-sheets
 
 # Start the backend
 #Access it on `http://localhost:8000`
-$ fastapi run backend/api.py
+$ cd backend
+$ uvicorn api:app --host 0.0.0.0 --port 8000
 
 # Install dependencies
 $ npm install ./frontend

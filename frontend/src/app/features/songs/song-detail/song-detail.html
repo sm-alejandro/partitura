@@ -1,0 +1,39 @@
+<div class="mx-auto w-[80%]">
+  <app-breadcrumbs [items]="breadcrumbs()" class="w-full align-left block"></app-breadcrumbs>
+  <h1 class="h1 text-4xl">{{ song.value()?.title }}</h1>
+  @if(song.hasValue()) {
+  <div class="py-6 gap-4 grid grid-cols-1 md:grid-cols-[3fr_2fr]">
+    <a
+      class="flex items-center gap-2 p-4 border rounded-lg shadow hover:bg-neutral-800 cursor-pointer"
+      [routerLink]="`/authors/${songAuthor.value()?.id}`"
+    >
+      <mat-icon>person</mat-icon>
+      <h3 class="text-lg font-semibold">{{ songAuthor.value()?.name }}</h3>
+    </a>
+    <a
+      class="flex items-center gap-2 p-4 border rounded-lg shadow hover:bg-neutral-800 cursor-pointer"
+      [routerLink]="`/categories/${songCategory.value()?.id}`"
+    >
+      <mat-icon>category</mat-icon>
+      <h3 class="text-lg font-semibold">{{ songCategory.value()?.name }}</h3>
+    </a>
+  </div>
+  <div class="py-6 gap-4 grid grid-cols-1 md:grid-cols-2">
+    @for (file of sortedFiles(); track $index) {
+    <a
+      class="flex items-center gap-2 p-4 border rounded-lg shadow hover:bg-neutral-800 cursor-pointer"
+      [href]="fileURI(file)"
+      target="_blank"
+    >
+      <mat-icon class="folder-icon">person</mat-icon>
+      <h3 class="text-lg font-semibold scroll break-all">{{ file.split(/[\\/]/).pop() }}</h3>
+      <!-- <p class="text-gray-500">{{ author.id }} files</p> -->
+    </a>
+    }
+  </div>
+  } @else if (song.error()) {
+  <div>Could not load song</div>
+  } @else if (song.isLoading()) {
+  <div>Loading song...</div>
+  }
+</div>

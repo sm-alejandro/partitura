@@ -1,0 +1,7 @@
+id: str(required=False, none=True)
+title: str()
+subtitle: str(required=False, none=True)
+author: str()
+arranger: str()
+category: str()
+image: str()

@@ -16,13 +16,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>."""
 
 from typing import Optional
 
+from config import PROJECT_DIR
 from fastapi import FastAPI, Form, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
+from models import Author, Category, Playlist, PlaylistSong, Song
 from pydantic import BaseModel
-
-from backend.models import Author, Category, Playlist, PlaylistSong, Song
-from config import PROJECT_DIR
 
 app = FastAPI(title="Partitura API")
 
@@ -173,7 +172,7 @@ def get_song_files(song_id):
     category = Category.get_by_id(song.category)
     try:
         # List all files in the folder
-        files = PROJECT_DIR / "backend" / "songs" / category.name / folder_path
+        files = PROJECT_DIR / "songs" / category.name / folder_path
         print(files)
         # Filter for PDF and MusicXML files
         return list(files.glob("*.pdf"))
@@ -186,4 +185,5 @@ def get_song_files(song_id):
 @app.get("/file")
 async def get_file(file: Optional[str] = Query(default="")):
     file_path = PROJECT_DIR / file
+    print(file_path)
     return FileResponse(file_path, media_type="application/pdf")
