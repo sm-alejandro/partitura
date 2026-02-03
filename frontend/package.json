@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0",
-    "build": "ng build",
+    "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "nginx": "cp ./nginx.conf /etc/nginx/nginx.conf && cp -r ./dist /usr/share/nginx/html"
