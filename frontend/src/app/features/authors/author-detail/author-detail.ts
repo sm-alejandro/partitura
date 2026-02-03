@@ -1,7 +1,6 @@
 import { httpResource } from '@angular/common/http';
 import { Component, computed, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { API_URL } from '../../../shared/consts';
 import { AuthorDTO, SongDTO } from '../../../shared/models';
 import { Breadcrumbs } from '../../../shared/breadcrumbs/breadcrumbs';
 import { MatIconModule } from '@angular/material/icon';
@@ -14,8 +13,8 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class AuthorDetail {
   authorId = signal('');
-  author = httpResource<AuthorDTO>(() => `${API_URL}/authors/${this.authorId()}`);
-  songs = httpResource<SongDTO[]>(() => `${API_URL}/authors/${this.authorId()}/songs`);
+  author = httpResource<AuthorDTO>(() => '/api/authors/${this.authorId()}');
+  songs = httpResource<SongDTO[]>(() => '/api/authors/${this.authorId()}/songs');
   sortedSongs = computed(() => {
     const songs = this.songs.value();
     if (!songs) return [];

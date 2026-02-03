@@ -2,7 +2,6 @@ import { Component, computed, inject, Input, signal } from '@angular/core';
 import { Breadcrumbs } from '../../../shared/breadcrumbs/breadcrumbs';
 import { httpResource } from '@angular/common/http';
 import { CategoryDTO, SongDTO } from '../../../shared/models';
-import { API_URL } from '../../../shared/consts';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { Title } from '@angular/platform-browser';
@@ -23,12 +22,10 @@ export class SongDetail {
       link: `/categories/${this.songId()}`,
     },
   ]);
-  song = httpResource<SongDTO>(() => `${API_URL}/songs/${this.songId()}`);
-  songCategory = httpResource<CategoryDTO>(
-    () => `${API_URL}/categories/${this.song.value()?.category}`,
-  );
-  songAuthor = httpResource<CategoryDTO>(() => `${API_URL}/authors/${this.song.value()?.author}`);
-  files = httpResource<string[]>(() => `${API_URL}/songs/${this.songId()}/files`);
+  song = httpResource<SongDTO>(() => '/api/songs/${this.songId()}');
+  songCategory = httpResource<CategoryDTO>(() => '/api/categories/${this.song.value()?.category}');
+  songAuthor = httpResource<CategoryDTO>(() => '/api/authors/${this.song.value()?.author}');
+  files = httpResource<string[]>(() => '/api/songs/${this.songId()}/files');
   sortedFiles = computed(() => {
     document.title = this.song.value()?.title || '';
     const files = this.files.value();
@@ -37,7 +34,7 @@ export class SongDetail {
   });
 
   fileURI(uri: string) {
-    return `${API_URL}/file?file=${encodeURIComponent(uri)}`;
+    return '/api/file?file=${encodeURIComponent(uri)}';
   }
 
   constructor(private activatedRoute: ActivatedRoute) {

@@ -1,7 +1,6 @@
 import { httpResource } from '@angular/common/http';
 import { Component, computed, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { API_URL } from '../../../shared/consts';
 import { Breadcrumb, CategoryDTO, SongDTO } from '../../../shared/models';
 import { Breadcrumbs } from '../../../shared/breadcrumbs/breadcrumbs';
 import { MatIconModule } from '@angular/material/icon';
@@ -14,8 +13,8 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class CategoryDetail {
   categoryId = signal('');
-  category = httpResource<CategoryDTO>(() => `${API_URL}/categories/${this.categoryId()}`);
-  songs = httpResource<SongDTO[]>(() => `${API_URL}/categories/${this.categoryId()}/songs`);
+  category = httpResource<CategoryDTO>(() => '/api/categories/${this.categoryId()}');
+  songs = httpResource<SongDTO[]>(() => '/api/categories/${this.categoryId()}/songs');
   sortedSongs = computed(() => {
     const songs = this.songs.value();
     if (!songs) return [];

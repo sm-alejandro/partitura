@@ -1,7 +1,6 @@
 import { httpResource } from '@angular/common/http';
 import { Component, computed, inject, OnInit, Query, signal } from '@angular/core';
 import { Breadcrumb, SongDTO } from '../../shared/models';
-import { API_URL } from '../../shared/consts';
 import { Breadcrumbs } from '../../shared/breadcrumbs/breadcrumbs';
 import { MatIcon } from '@angular/material/icon';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -17,7 +16,7 @@ export class Songs implements OnInit {
   activatedRoute = inject(ActivatedRoute);
   search = signal('');
   breadcrumbs: Breadcrumb[] = [{ text: 'Songs', link: '/songs' }];
-  songs = httpResource<SongDTO[]>(() => `${API_URL}/songs`);
+  songs = httpResource<SongDTO[]>(() => '/api/songs');
 
   sortedSongs = computed(() => {
     const songs = this.songs.value();

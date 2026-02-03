@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 0.0.0.0",
+    "start": "ng serve --host 0.0.0.0 --proxy proxy.conf.json",
     "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "nginx": "cp ./nginx.conf /etc/nginx/nginx.conf && cp -r ./dist /usr/share/nginx/html"
+    "nginx": "cp ./nginx.conf /etc/nginx/nginx.conf && cp -r ./dist /var/www/partitura/dist"
   },
   "prettier": {
     "printWidth": 100,
