@@ -13,8 +13,8 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class CategoryDetail {
   categoryId = signal('');
-  category = httpResource<CategoryDTO>(() => '/api/categories/${this.categoryId()}');
-  songs = httpResource<SongDTO[]>(() => '/api/categories/${this.categoryId()}/songs');
+  category = httpResource<CategoryDTO>(() => `/api/categories/${this.categoryId()}`);
+  songs = httpResource<SongDTO[]>(() => `/api/categories/${this.categoryId()}/songs`);
   sortedSongs = computed(() => {
     const songs = this.songs.value();
     if (!songs) return [];
