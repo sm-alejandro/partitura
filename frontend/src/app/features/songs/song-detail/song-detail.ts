@@ -22,10 +22,10 @@ export class SongDetail {
       link: `/categories/${this.songId()}`,
     },
   ]);
-  song = httpResource<SongDTO>(() => '/api/songs/${this.songId()}');
-  songCategory = httpResource<CategoryDTO>(() => '/api/categories/${this.song.value()?.category}');
-  songAuthor = httpResource<CategoryDTO>(() => '/api/authors/${this.song.value()?.author}');
-  files = httpResource<string[]>(() => '/api/songs/${this.songId()}/files');
+  song = httpResource<SongDTO>(() => `/api/songs/${this.songId()}`);
+  songCategory = httpResource<CategoryDTO>(() => `/api/categories/${this.song.value()?.category}`);
+  songAuthor = httpResource<CategoryDTO>(() => `/api/authors/${this.song.value()?.author}`);
+  files = httpResource<string[]>(() => `/api/songs/${this.songId()}/files`);
   sortedFiles = computed(() => {
     document.title = this.song.value()?.title || '';
     const files = this.files.value();
@@ -34,7 +34,7 @@ export class SongDetail {
   });
 
   fileURI(uri: string) {
-    return '/api/file?file=${encodeURIComponent(uri)}';
+    return `/api/file?file=${encodeURIComponent(uri)}`;
   }
 
   constructor(private activatedRoute: ActivatedRoute) {

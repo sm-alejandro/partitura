@@ -13,8 +13,8 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class AuthorDetail {
   authorId = signal('');
-  author = httpResource<AuthorDTO>(() => '/api/authors/${this.authorId()}');
-  songs = httpResource<SongDTO[]>(() => '/api/authors/${this.authorId()}/songs');
+  author = httpResource<AuthorDTO>(() => `/api/authors/${this.authorId()}`);
+  songs = httpResource<SongDTO[]>(() => `/api/authors/${this.authorId()}/songs`);
   sortedSongs = computed(() => {
     const songs = this.songs.value();
     if (!songs) return [];
