@@ -7,7 +7,7 @@
     "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "nginx": "cp ./nginx.conf /etc/nginx/nginx.conf && cp -r ./dist/browser/ /var/www/partitura/",
+    "nginx": "cp ./nginx.conf /etc/nginx/nginx.conf && cp -r ./dist/browser /var/www/partitura/",
     "lint": "ng lint"
   },
   "prettier": {
