@@ -5,6 +5,7 @@ import { CategoryDTO, SongDTO } from '../../../shared/models';
 import { API_URL } from '../../../shared/consts';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-song-detail',
@@ -14,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class SongDetail {
   @Input() songId = signal('');
+  private titleService = inject(Title);
   readonly breadcrumbs = computed(() => [
     { text: 'Songs', link: '/songs' },
     {
@@ -23,11 +25,12 @@ export class SongDetail {
   ]);
   song = httpResource<SongDTO>(() => `${API_URL}/songs/${this.songId()}`);
   songCategory = httpResource<CategoryDTO>(
-    () => `${API_URL}/categories/${this.song.value()?.category}`
+    () => `${API_URL}/categories/${this.song.value()?.category}`,
   );
   songAuthor = httpResource<CategoryDTO>(() => `${API_URL}/authors/${this.song.value()?.author}`);
   files = httpResource<string[]>(() => `${API_URL}/songs/${this.songId()}/files`);
   sortedFiles = computed(() => {
+    document.title = this.song.value()?.title || '';
     const files = this.files.value();
     if (!files) return [];
     return [...files].sort((a, b) => a.localeCompare(b));
@@ -38,6 +41,8 @@ export class SongDetail {
   }
 
   constructor(private activatedRoute: ActivatedRoute) {
+    this.titleService.setTitle(this.song.value()?.title || '');
+    console.log(this.song.value()?.title);
     this.activatedRoute.params.subscribe((params) => {
       this.songId.set(params['id']);
     });

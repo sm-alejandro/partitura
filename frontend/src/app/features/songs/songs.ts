@@ -23,19 +23,19 @@ export class Songs implements OnInit {
     const songs = this.songs.value();
     if (!songs) return [];
     const sorted = songs.filter((s) => s.slug).sort((a, b) => a.slug.localeCompare(b.slug));
-    if (this.search)
+    if (this.search && this.search() != '')
       return sorted.filter(
         (s) =>
           s.slug.toLowerCase().includes(this.search().toLowerCase()) ||
           s.title.toLowerCase().includes(this.search().toLowerCase()) ||
-          s.folder.toLowerCase().includes(this.search().toLowerCase())
+          s.folder.toLowerCase().includes(this.search().toLowerCase()),
       );
     return sorted;
   });
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((queryParams) => {
-      this.search.set(queryParams['search']);
+      this.search.set(queryParams['search'] || '');
     });
   }
 }
