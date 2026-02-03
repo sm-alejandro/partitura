@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "nginx": "cp ./nginx.conf /etc/nginx/nginx.conf && cp ./dist /usr/share/nginx/html"
+    "nginx": "cp ./nginx.conf /etc/nginx/nginx.conf && cp -r ./dist /usr/share/nginx/html"
   },
   "prettier": {
     "printWidth": 100,
